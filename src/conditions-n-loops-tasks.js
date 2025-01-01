@@ -511,22 +511,24 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
-  // let result = str;
-  // for (let i = 0; i < iterations; i += 1) {
-  //   let odds = '';
-  //   let evens = '';
-  //   for (let j = 0; j < result.length; j += 1) {
-  //     if (j % 2 === 0) {
-  //       evens += result[j];
-  //     } else {
-  //       odds += result[j];
-  //     }
-  //   }
-  //   result = evens + odds;
-  // }
-  // return result;
+function shuffleChar(str, iterations) {
+  let result = str;
+  for (let i = 1; i <= iterations; i += 1) {
+    let odds = '';
+    let evens = '';
+    for (let j = 0; j < str.length; j += 1) {
+      if (j % 2 === 0) {
+        evens += result[j];
+      } else {
+        odds += result[j];
+      }
+    }
+    result = `${evens}${odds}`;
+    if (result === str) {
+      return shuffleChar(str, iterations % i);
+    }
+  }
+  return result;
 }
 
 /**
@@ -548,7 +550,29 @@ function shuffleChar(/* str, iterations */) {
  */
 function getNearestBigger(/* number */) {
   throw new Error('Not implemented');
+  // const num = String(number).split('');
+  // for (let i = num.length - 1; i >= 0; i -= 1) {
+  //   // console.log(num[i]);
+  //   // console.log(num[i - 1]);
+  //   if (num[i] < num[i - 1]) {
+  //     const temp = num[i];
+  //     num[i] = num[i - 1];
+  //     num[i - 1] = temp;
+  //     break;
+  //   }
+  // }
+  // return num.join('');
 }
+
+// console.log(getNearestBigger(12345)); //    => 12354
+// console.log(getNearestBigger(123450)); //   => 123504
+// console.log(getNearestBigger(12344)); //    => 12434
+// console.log(getNearestBigger(123440)); //   => 124034
+// console.log(getNearestBigger(1203450)); //  => 1203504
+// console.log(getNearestBigger(90822)); //    => 92028
+// console.log(getNearestBigger(321321)); //   => 322113
+
+// node src/conditions-n-loops-tasks.js
 
 module.exports = {
   isPositive,
